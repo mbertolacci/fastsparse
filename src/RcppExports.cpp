@@ -11,62 +11,6 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
-// spdb_cholesky
-NumericMatrix spdb_cholesky(NumericMatrix A);
-RcppExport SEXP _fastsparse_spdb_cholesky(SEXP ASEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< NumericMatrix >::type A(ASEXP);
-    rcpp_result_gen = Rcpp::wrap(spdb_cholesky(A));
-    return rcpp_result_gen;
-END_RCPP
-}
-// fast_add
-S4 fast_add(S4 a, S4 b);
-RcppExport SEXP _fastsparse_fast_add(SEXP aSEXP, SEXP bSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< S4 >::type a(aSEXP);
-    Rcpp::traits::input_parameter< S4 >::type b(bSEXP);
-    rcpp_result_gen = Rcpp::wrap(fast_add(a, b));
-    return rcpp_result_gen;
-END_RCPP
-}
-// fast_add2
-S4 fast_add2(S4 a, S4 b);
-RcppExport SEXP _fastsparse_fast_add2(SEXP aSEXP, SEXP bSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< S4 >::type a(aSEXP);
-    Rcpp::traits::input_parameter< S4 >::type b(bSEXP);
-    rcpp_result_gen = Rcpp::wrap(fast_add2(a, b));
-    return rcpp_result_gen;
-END_RCPP
-}
-// fast_add3
-SEXP fast_add3(Rcpp::S4 a_, Rcpp::S4 b_);
-RcppExport SEXP _fastsparse_fast_add3(SEXP a_SEXP, SEXP b_SEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< Rcpp::S4 >::type a_(a_SEXP);
-    Rcpp::traits::input_parameter< Rcpp::S4 >::type b_(b_SEXP);
-    rcpp_result_gen = Rcpp::wrap(fast_add3(a_, b_));
-    return rcpp_result_gen;
-END_RCPP
-}
-// fast_make_sparse
-S4 fast_make_sparse(IntegerVector i, IntegerVector p, NumericVector x, int n);
-RcppExport SEXP _fastsparse_fast_make_sparse(SEXP iSEXP, SEXP pSEXP, SEXP xSEXP, SEXP nSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< IntegerVector >::type i(iSEXP);
-    Rcpp::traits::input_parameter< IntegerVector >::type p(pSEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
-    Rcpp::traits::input_parameter< int >::type n(nSEXP);
-    rcpp_result_gen = Rcpp::wrap(fast_make_sparse(i, p, x, n));
-    return rcpp_result_gen;
-END_RCPP
-}
 // fast_kronecker
 S4 fast_kronecker(S4 a, S4 b);
 RcppExport SEXP _fastsparse_fast_kronecker(SEXP aSEXP, SEXP bSEXP) {
@@ -162,11 +106,6 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_fastsparse_spdb_cholesky", (DL_FUNC) &_fastsparse_spdb_cholesky, 1},
-    {"_fastsparse_fast_add", (DL_FUNC) &_fastsparse_fast_add, 2},
-    {"_fastsparse_fast_add2", (DL_FUNC) &_fastsparse_fast_add2, 2},
-    {"_fastsparse_fast_add3", (DL_FUNC) &_fastsparse_fast_add3, 2},
-    {"_fastsparse_fast_make_sparse", (DL_FUNC) &_fastsparse_fast_make_sparse, 4},
     {"_fastsparse_fast_kronecker", (DL_FUNC) &_fastsparse_fast_kronecker, 2},
     {"_fastsparse_fast_kronecker_sym", (DL_FUNC) &_fastsparse_fast_kronecker_sym, 2},
     {"_fastsparse_spdt_cholesky", (DL_FUNC) &_fastsparse_spdt_cholesky, 2},
