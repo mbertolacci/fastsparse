@@ -56,6 +56,7 @@ NumericVector spdt_mul_vec(NumericVector diag, NumericVector subDiag, NumericVec
             + subDiag[0] * rhs[n * k + 1]
         );
         int i = 1;
+        #pragma omp parallel for simd
         for (; i < n - 1; ++i) {
             output[n * k + i] = (
                 diag[i] * rhs[n * k + i]
@@ -83,6 +84,7 @@ NumericVector spdt_mul_mat(NumericVector diag, NumericVector subDiag, NumericMat
             + subDiag[0] * rhs(1, k)
         );
         int i = 1;
+        #pragma omp parallel for simd
         for (; i < n - 1; ++i) {
             output(i, k) = (
                 diag[i] * rhs(i, k)

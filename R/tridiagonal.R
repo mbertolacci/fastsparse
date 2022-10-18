@@ -30,18 +30,16 @@ setClass(
 #' @export
 TridiagonalMatrix <- function(
   major,
-  # sub_minor,
-  # sup_minor,
   minor,
+  sub_minor,
   dimnames,
   symmetric
 ) {
   n <- length(major)
 
-  symmetric <- TRUE
-  # if (missing(symmetric)) {
-  #   symmetric <- !missing(minor) || missing(sub_minor) || missing(sup_minor)
-  # }
+  if (missing(symmetric)) {
+    symmetric <- missing(sub_minor)
+  }
   if (symmetric) {
     new(
       'STridiagonalMatrix',
@@ -56,7 +54,7 @@ TridiagonalMatrix <- function(
       'GTridiagonalMatrix',
       major = as.numeric(major),
       sub_minor = as.numeric(sub_minor),
-      sup_minor = as.numeric(sup_minor),
+      sup_minor = as.numeric(minor),
       factors = list(),
       Dim = c(n, n),
       Dimnames = if (missing(dimnames)) list(NULL, NULL) else dimnames
