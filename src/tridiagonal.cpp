@@ -55,18 +55,17 @@ NumericVector spdt_mul_vec(NumericVector diag, NumericVector subDiag, NumericVec
             diag[0] * rhs[n * k + 0]
             + subDiag[0] * rhs[n * k + 1]
         );
-        int i = 1;
         #pragma omp parallel for simd
-        for (; i < n - 1; ++i) {
+        for (int i = 1; i < n - 1; ++i) {
             output[n * k + i] = (
                 diag[i] * rhs[n * k + i]
                 + subDiag[i - 1] * rhs[n * k + i - 1]
                 + subDiag[i] * rhs[n * k + i + 1]
             );
         }
-        output[n * k + i] = (
-            diag[i] * rhs[n * k + i]
-            + subDiag[i - 1] * rhs[n * k + i - 1]
+        output[n * k + n - 1] = (
+            diag[n - 1] * rhs[n * k + n - 1]
+            + subDiag[n - 2] * rhs[n * k + n - 2]
         );
     }
 
@@ -83,18 +82,17 @@ NumericVector spdt_mul_mat(NumericVector diag, NumericVector subDiag, NumericMat
             diag[0] * rhs(0, k)
             + subDiag[0] * rhs(1, k)
         );
-        int i = 1;
         #pragma omp parallel for simd
-        for (; i < n - 1; ++i) {
+        for (int i = 1; i < n - 1; ++i) {
             output(i, k) = (
                 diag[i] * rhs(i, k)
                 + subDiag[i - 1] * rhs(i - 1, k)
                 + subDiag[i] * rhs(i + 1, k)
             );
         }
-        output(i, k) = (
-            diag[i] * rhs(i, k)
-            + subDiag[i - 1] * rhs(i - 1, k)
+        output(n - 1, k) = (
+            diag[n - 1] * rhs(n - 1, k)
+            + subDiag[n - 2] * rhs(n - 2, k)
         );
     }
 
